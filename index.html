@@ -104,7 +104,6 @@
         var foot = tree.footer;
         var hold = 1;
         canvas.click(function(e) {
-            autoPlay(); // 播放音乐
             var offset = canvas.offset(), x, y;
             x = e.pageX - offset.left;
             y = e.pageY - offset.top;
@@ -118,7 +117,11 @@
             var offset = canvas.offset(), x, y;
             x = e.pageX - offset.left;
             y = e.pageY - offset.top;
-            canvas.toggleClass('hand', seed.hover(x, y));
+            var isClickHeart = seed.hover(x, y);
+            if (isClickHeart) {
+                autoPlay(); // 播放音乐
+            }
+            canvas.toggleClass('hand', isClickHeart);
         });
         var seedAnimate = eval(Jscex.compile("async", function () {
             seed.draw();
