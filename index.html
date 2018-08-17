@@ -51,15 +51,14 @@
 
     <script>
     (function(){
-        function autoPlay() {
-            var myAuto = document.getElementById('myaudio');
-            myAuto.play();
-        }
-        function closePlay() {
-            var myAuto = document.getElementById('myaudio');
-            myAuto.pause();
-            myAuto.load();
-        }
+        var myAuto = document.getElementById('myaudio');
+        // function autoPlay() {
+        //     myAuto.play();
+        // }
+        // function closePlay() {
+        //     myAuto.pause();
+        //     myAuto.load();
+        // }
 
         var canvas = $('#canvas');
         if (!canvas[0].getContext) {
@@ -115,6 +114,7 @@
             x = e.pageX - offset.left;
             y = e.pageY - offset.top;
             if (seed.hover(x, y)) {
+                myAuto.play();
                 hold = 0; 
                 canvas.unbind("click");
                 canvas.unbind("mousemove");
@@ -125,9 +125,6 @@
             x = e.pageX - offset.left;
             y = e.pageY - offset.top;
             var isClickHeart = seed.hover(x, y);
-            if (isClickHeart) {
-                autoPlay(); // 播放音乐
-            }
             canvas.toggleClass('hand', isClickHeart);
         });
         var seedAnimate = eval(Jscex.compile("async", function () {
