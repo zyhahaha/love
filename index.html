@@ -40,7 +40,7 @@
     <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
   </head>
   <body>
-    <div id="main" @click.native="handleClick">
+    <div id="main">
       <div id="error">
         亲，您使用的浏览器无法支持即将显示的内容，请换成谷歌(<a
           href="http://www.google.cn/chrome/intl/zh-CN/landing_chrome.html?hl=zh-CN&brand=CHMI"
@@ -75,7 +75,7 @@
           Y 与 M 在一起的
           <div id="clock"></div>
         </div>
-        <canvas id="canvas" width="1100" height="680"></canvas>
+        <canvas @click="handleClick" id="canvas" width="1100" height="680"></canvas>
       </div>
       <!-- <audio src="往后余生-马良.mp3" autoplay="autoplay"></audio> -->
       <audio
@@ -98,15 +98,18 @@
       new Vue({
         el: "#main",
         data: {
-          popupVisible: true
+          popupVisible: false
         },
         created() {
           // this.$toast('Hello world!')
         },
         methods: {
           handleClick: function() {
-            alert(1234);
-            this.$toast("Hello world!");
+            if (!this.popupVisible){
+              this.popupVisible = true;
+            }
+            // alert(1234);
+            // this.$toast("Hello world!");
           }
         }
       });
@@ -216,8 +219,13 @@
         var seed = tree.seed;
         var foot = tree.footer;
         var hold = 1;
+        var popupVisible = false; // fix 2.15
         canvas
           .click(function(e) {
+            if (!popupVisible) {
+              popupVisible = true;
+              return;
+            }
             var offset = canvas.offset(),
               x,
               y;
