@@ -85,9 +85,11 @@
         hidden="true"
       ></audio>
 
-      <mt-popup v-model="popupVisible" popup-transition="popup-fade">
-        <div class="pop-wrap">
-          test
+      <!-- 2.15  pop -->
+      <mt-popup class="pop-wrap" v-model="popupVisible" popup-transition="popup-fade">
+        <div class="pop-content">
+          <h2>test</h2>
+          <p>aaa</p>
         </div>
       </mt-popup>
     </div>
