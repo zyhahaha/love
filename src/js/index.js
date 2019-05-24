@@ -93,13 +93,8 @@
   var seed = tree.seed;
   var foot = tree.footer;
   var hold = 1;
-  var popupVisible = false; // fix 2.15
   canvas
     .click(function(e) {
-      if (!popupVisible) {
-        popupVisible = true;
-        return;
-      }
       var offset = canvas.offset(),
         x,
         y;
